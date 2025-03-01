@@ -47,7 +47,7 @@ function CalendarPage() {
           key={emoji.id} 
           src={emoji.image} 
           alt={emoji.name} 
-          style={{ width: "40px", height: "40px", margin: "2px" }} 
+          style={{ width: "60px", height: "60px", margin: "2px" }} 
         />
       ));
     }
