@@ -1,0 +1,167 @@
+/* CalendarPage.css */
+
+/* Общий стиль для страницы */
+.calendar-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Календарь занимает всю высоту страницы */
+  margin: 0;
+  background-color: #f4f4f4;
+}
+
+/* Контейнер для календаря */
+.calendar-container {
+  width: 100%; /* Календарь будет занимать 100% ширины экрана */
+  max-width: 1400px; /* Максимальная ширина календаря */
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 40px; /* Увеличиваем отступы для красивого вида */
+  overflow: hidden; /* Убираем лишний скролл */
+  transform: scale(1.2); /* Увеличиваем сам календарь */
+}
+
+/* Стили для самого календаря */
+.react-calendar {
+  width: 100%;
+  background-color: #ffffff;
+  font-family: 'Arial', sans-serif;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Стили для ячеек с эмодзи */
+.react-calendar__tile {
+  position: relative;
+  display: flex;
+  justify-content: flex-end; /* Размещаем цифры по правому краю */
+  align-items: flex-start; /* Размещаем цифры по верхнему краю */
+  font-size: 2.5em; /* Размер текста в ячейке */
+  height: 100px; /* Высота ячеек */
+  width: 100px; /* Ширина ячеек */
+  border: 1px solid #ddd; /* Легкая граница для ячеек */
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  cursor: pointer;
+}
+
+/* Стили для выходных (суббота и воскресенье) */
+.react-calendar__tile[data-weekday="0"], /* Воскресенье */
+.react-calendar__tile[data-weekday="6"] { /* Суббота */
+  color: red !important; /* Принудительный стиль для выходных */
+  font-weight: bold; /* Жирный шрифт для выходных */
+}
+
+/* Стили для всех дней (кроме выходных) */
+.react-calendar__tile:not([data-weekday="0"]):not([data-weekday="6"]) {
+  color: black; /* Цвет текста для всех остальных дней черный */
+}
+
+/* Стили для сегодняшнего дня */
+.react-calendar__tile--active {
+  background-color: #21ae21; /* Синий цвет для сегодняшнего дня */
+  color: white; /* Белый цвет текста */
+  font-weight: bold; /* Жирный шрифт */
+  border: 2px solid #41d773; /* Темная граница для выделения */
+}
+
+/* Стили для эмоджи внутри ячеек */
+.tile-content img {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  margin: 2px;
+}
+
+/* Первое эмоджи: в верхнем левом углу */
+.react-calendar__tile > .tile-content > img:nth-child(1) {
+  top: 5px;
+  left: 5px;
+}
+
+/* Второе эмоджи: в нижнем левом углу */
+.react-calendar__tile > .tile-content > img:nth-child(2) {
+  bottom: 5px;
+  left: 5px;
+}
+
+/* Третье эмоджи: в нижнем правом углу */
+.react-calendar__tile > .tile-content > img:nth-child(3) {
+  bottom: 5px;
+  right: 5px;
+}
+
+/* Добавляем стили для выделения дня */
+.react-calendar__tile:active {
+  background-color: #e0e0e0;
+}
+
+/* Цвет фона при наведении */
+.react-calendar__tile:hover {
+  background-color: #e8e8e8;
+}
+
+/* Размер шрифта для дней */
+.react-calendar__month-view__days__day {
+  font-size: 1.5em;
+}
+
+/* Стили для заголовков дней недели */
+.react-calendar__month-view__weekdays__weekday {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #333;
+  text-transform: uppercase;
+}
+
+/* Стили для отображения года и навигации */
+.react-calendar__navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* Стили для кнопок навигации (предыдущий и следующий месяц) */
+.react-calendar__navigation button {
+  background-color: transparent;
+  border: none;
+  font-size: 1.5em;
+  color: #333;
+  cursor: pointer;
+}
+
+.react-calendar__navigation button:focus {
+  outline: none;
+}
+
+.react-calendar__navigation button:hover {
+  color: #31e561;
+}
+
+/* Стили для отображения текущего месяца */
+.react-calendar__navigation__label {
+  font-size: 1.8em;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Стиль кнопки "Главная" */
+.button_new {
+  padding: 10px;
+  background-color: #45a049; /* Красный цвет для кнопки выхода */
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 20px;
+  width: 200px;
+
+  margin-left: 45%;
+}
+
+button:hover {
+  background-color: #318a37;
+}

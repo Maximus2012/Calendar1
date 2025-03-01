@@ -1,0 +1,141 @@
+
+.emoji-selection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+}
+
+/* Заголовки */
+h2, h3 {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Стили для блоков категорий */
+.categories {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+/* Стили для изображений категорий */
+.category-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.category-image:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Кнопка добавления категории */
+.add-category-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-category-button:hover {
+    background-color: #45a049;
+}
+
+/* Стили для блока эмодзи */
+.emojis {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    border-top: 2px solid #ddd;
+    padding-top: 20px;
+}
+
+/* Кнопка добавления эмодзи */
+.add-emoji-button {
+    padding: 10px 20px;
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-emoji-button:hover {
+    background-color: #0b7dda;
+}
+
+/* Стили для выбранных эмодзи */
+.emoji-image.selected {
+    border: 2px solid green;
+    background-color: rgba(0, 255, 0, 0.2);
+}
+
+/* Выделение категории в модальном окне */
+.category-option.selected {
+    border: 2px solid green;
+    background-color: rgba(0, 255, 0, 0.2);
+    cursor: pointer;
+}
+
+/* Модальное окно */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.modal-content input {
+    margin-bottom: 10px;
+    padding: 8px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.modal-content button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal-content button:hover {
+    background-color: #45a049;
+}
+
+.modal-content button:last-child {
+    background-color: #f44336;
+}
+
+.modal-content button:last-child:hover {
+    background-color: #e53935;
+} 

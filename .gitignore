@@ -1,0 +1,9 @@
+# Игнорируем системные файлы macOS
+.DS_Store
+
+# Игнорируем виртуальное окружение Python
+venv/
+
+# Игнорируем зависимости фронтенда
+frontend/node_modules/
+emoji_calendar/media
