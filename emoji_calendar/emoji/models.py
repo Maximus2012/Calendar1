@@ -9,7 +9,7 @@ from django.conf import settings
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=50, unique=True, blank=False)
+    name = models.CharField(max_length=50, unique=False, blank=False)
     image = models.ImageField(upload_to='category/', null=False, unique=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
@@ -18,7 +18,7 @@ class Category(models.Model):
 
 
 class Emogi(models.Model):
-    name = models.CharField(max_length=50, blank=False, unique=True)
+    name = models.CharField(max_length=50, blank=False, unique=False)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     image = models.ImageField(upload_to='emoji/', null=False, unique=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
