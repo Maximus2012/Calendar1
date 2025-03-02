@@ -77,6 +77,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",  # Если фронтенд на React/Vue
     "http://127.0.0.1:5500",  # Если фронтенд просто HTML+JS
     "https://dfe7-35-156-78-237.ngrok-free.app",
+     "web-production-bb39.up.railway.app",
 ]
 
 ROOT_URLCONF = 'emoji_calendar.urls'
