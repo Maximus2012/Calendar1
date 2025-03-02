@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { addDays, format } from 'date-fns'; // Импортируем нужные функции из date-fns
+import axiosInstance from '../axios'; // Импортируем настроенный axios
 import "./EmojiSelectionPage.css";
 
 function EmojiSelectionPage() {
@@ -23,22 +23,28 @@ function EmojiSelectionPage() {
   const nextDate = addDays(new Date(date), 1); // Добавляем 1 день к текущей дате
   const formattedDate = format(nextDate, 'yyyy-MM-dd'); // Форматируем дату в нужный вид
 
+  const apiRequest = async (url, method = "get", data = null) => {
+    try {
+      const response = await axiosInstance({
+        method,
+        url,
+        data,
+      });
+      return response;
+    } catch (error) {
+      console.error("Ошибка при запросе", error);
+      throw error;
+    }
+  };
+
   useEffect(() => {
     const fetchUserData = async () => {
-      const token = localStorage.getItem("access");
-      if (!token) {
-        navigate("/login");
-        return;
-      }
-
       try {
-        const response = await axios.get("http://127.0.0.1:8000/auth/users/me/", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-
+        const response = await apiRequest(`${process.env.REACT_APP_API_URL}/auth/users/me/`);
         setUserId(response.data.id);
       } catch (error) {
         console.error("Ошибка при получении данных пользователя", error);
+        navigate("/login");
       }
     };
 
@@ -47,15 +53,8 @@ function EmojiSelectionPage() {
 
   useEffect(() => {
     const fetchCategories = async () => {
-      const token = localStorage.getItem("access");
-      if (!token) {
-        navigate("/login");
-        return;
-      }
       try {
-        const response = await axios.get("http://localhost:8000/api/categories/", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const response = await apiRequest(`${process.env.REACT_APP_API_URL}/api/categories/`);
         setCategories(response.data);
       } catch (error) {
         console.error("Ошибка при получении категорий", error);
@@ -63,18 +62,11 @@ function EmojiSelectionPage() {
     };
 
     fetchCategories();
-  }, [navigate]);
+  }, []);
 
   const fetchEmojis = async (categoryId) => {
-    const token = localStorage.getItem("access");
-    if (!token) {
-      navigate("/login");
-      return;
-    }
     try {
-      const response = await axios.get(`http://localhost:8000/api/emogis/by-category/${categoryId}/`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await apiRequest(`${process.env.REACT_APP_API_URL}/api/emogis/by-category/${categoryId}/`);
       setEmojis(response.data);
       setSelectedCategory(categoryId);
     } catch (error) {
@@ -98,22 +90,14 @@ function EmojiSelectionPage() {
       return;
     }
 
-    const token = localStorage.getItem("access");
-    if (!token) {
-      navigate("/login");
-      return;
-    }
-
     try {
-      await axios.post(
-        "http://localhost:8000/api/calendar/",
+      await apiRequest(
+        `${process.env.REACT_APP_API_URL}/api/calendar/`,
+        "post",
         {
           data: formattedDate, // Отправляем новую дату (добавленную на 1 день)
           user: userId,
           emoji: selectedEmojis,
-        },
-        {
-          headers: { Authorization: `Bearer ${token}` },
         }
       );
       navigate("/calendar");
@@ -123,23 +107,14 @@ function EmojiSelectionPage() {
   };
 
   const ClearSendEmojis = async () => {
-
-    const token = localStorage.getItem("access");
-    if (!token) {
-      navigate("/login");
-      return;
-    }
-
     try {
-      await axios.post(
-        "http://localhost:8000/api/calendar/",
+      await apiRequest(
+        `${process.env.REACT_APP_API_URL}/api/calendar/`,
+        "post",
         {
           data: formattedDate, // Отправляем новую дату (добавленную на 1 день)
           user: userId,
           emoji: [],
-        },
-        {
-          headers: { Authorization: `Bearer ${token}` },
         }
       );
       navigate("/calendar");
@@ -154,22 +129,16 @@ function EmojiSelectionPage() {
       return;
     }
 
-    const token = localStorage.getItem("access");
-    if (!token) {
-      navigate("/login");
-      return;
-    }
-
     const formData = new FormData();
     formData.append("name", newCategoryName);
     formData.append("image", newCategoryImage);
     formData.append("user", userId);
 
     try {
-      const response = await axios.post(
-        "http://localhost:8000/api/categories/",
-        formData,
-        { headers: { Authorization: `Bearer ${token}` } }
+      const response = await apiRequest(
+        `${process.env.REACT_APP_API_URL}/api/categories/`,
+        "post",
+        formData
       );
       setCategories([...categories, response.data]);
       setShowAddCategory(false);
@@ -186,12 +155,6 @@ function EmojiSelectionPage() {
       return;
     }
 
-    const token = localStorage.getItem("access");
-    if (!token) {
-      navigate("/login");
-      return;
-    }
-
     if (!selectedCategory) {
       alert("Пожалуйста, выберите категорию для эмодзи.");
       return;
@@ -204,10 +167,10 @@ function EmojiSelectionPage() {
     formData.append("user_id", userId);
 
     try {
-      const response = await axios.post(
-        "http://localhost:8000/api/emogis/",
-        formData,
-        { headers: { Authorization: `Bearer ${token}` } }
+      const response = await apiRequest(
+        `${process.env.REACT_APP_API_URL}/api/emogis/`,
+        "post",
+        formData
       );
       setEmojis([...emojis, response.data]);
       setShowAddEmoji(false);
@@ -223,16 +186,8 @@ function EmojiSelectionPage() {
   };
 
   const handleDeleteCategory = async (categoryId) => {
-    const token = localStorage.getItem("access");
-    if (!token) {
-      navigate("/login");
-      return;
-    }
-
     try {
-      await axios.delete(`http://localhost:8000/api/categories/${categoryId}/`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      await apiRequest(`${process.env.REACT_APP_API_URL}/api/categories/${categoryId}/`, "delete");
       setCategories(categories.filter((category) => category.id !== categoryId));
     } catch (error) {
       console.error("Ошибка при удалении категории", error);
@@ -240,16 +195,8 @@ function EmojiSelectionPage() {
   };
 
   const handleDeleteEmoji = async (emojiId) => {
-    const token = localStorage.getItem("access");
-    if (!token) {
-      navigate("/login");
-      return;
-    }
-
     try {
-      await axios.delete(`http://localhost:8000/api/emogis/${emojiId}/`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      await apiRequest(`${process.env.REACT_APP_API_URL}/api/emogis/${emojiId}/`, "delete");
       setEmojis(emojis.filter((emoji) => emoji.id !== emojiId));
     } catch (error) {
       console.error("Ошибка при удалении эмодзи", error);
