@@ -1,12 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginPage from "./assets/components/LoginPage/LoginPage";
-import RegisterPage from "./assets/components/RegiserPage/RegisterPage";
+import RegisterPage from "./assets/components/RegisterPage/RegisterPage";
 import HomePage from "./assets/components/HomePage/HomePage";
 import ChangePasswordPage from "./assets/components/ChangePasswordPage/ChangePasswordPage";
 import CalendarPage from "./assets/components/CalendarPage/CalendarPage";
-import EmojiSelectionPage from "./assets/components/EmogiSectionPage/EmogiSelectionPage";
+import EmojiSelectionPage from "./assets/components/EmojiSectionPage/EmojiSelectionPage";
 
 function App() {
+  
   return (
     <Router>
       <Routes>

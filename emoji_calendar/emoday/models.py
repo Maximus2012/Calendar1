@@ -8,7 +8,7 @@ User = get_user_model()
 class Calendar(models.Model):
     
     data = models.DateField()
-    emoji_id = models.ManyToManyField(Emogi)
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    emoji = models.ManyToManyField(Emogi)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     

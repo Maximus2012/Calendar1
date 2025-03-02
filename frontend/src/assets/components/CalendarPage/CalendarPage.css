@@ -16,6 +16,7 @@
   max-width: 1400px; /* Максимальная ширина календаря */
   background-color: white;
   border-radius: 10px;
+  margin-top: 200px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 40px; /* Увеличиваем отступы для красивого вида */
   overflow: hidden; /* Убираем лишний скролл */
@@ -60,17 +61,22 @@
 
 /* Стили для сегодняшнего дня */
 .react-calendar__tile--active {
-  background-color: #21ae21; /* Синий цвет для сегодняшнего дня */
-  color: white; /* Белый цвет текста */
-  font-weight: bold; /* Жирный шрифт */
-  border: 2px solid #41d773; /* Темная граница для выделения */
+  background-color: #21ae21 !important; /* Зеленый цвет */
+  color: white !important;
+  font-weight: bold !important;
+  border: 2px solid #56b174 !important;
+  transition: background-color 0.3s ease !important;
 }
 
+.react-calendar__tile--active:hover {
+  background-color: #198c19 !important; /* Темнее при наведении */
+  border-color: #3d8e5a !important;
+}
 /* Стили для эмоджи внутри ячеек */
 .tile-content img {
   position: absolute;
   width: 25px;
-  height: 25px;
+  height: 50px;
   margin: 2px;
 }
 
@@ -82,14 +88,15 @@
 
 /* Второе эмоджи: в нижнем левом углу */
 .react-calendar__tile > .tile-content > img:nth-child(2) {
-  bottom: 5px;
-  left: 5px;
+  bottom: 20px;
+  left: 65px;
+  
 }
 
 /* Третье эмоджи: в нижнем правом углу */
 .react-calendar__tile > .tile-content > img:nth-child(3) {
-  bottom: 5px;
-  right: 5px;
+  bottom: 10px;
+  right: 15px;
 }
 
 /* Добавляем стили для выделения дня */
@@ -108,11 +115,13 @@
 }
 
 /* Стили для заголовков дней недели */
+
 .react-calendar__month-view__weekdays__weekday {
   font-size: 1.2em;
   font-weight: bold;
   color: #333;
   text-transform: uppercase;
+  text-align: center; /* Центрируем текст */
 }
 
 /* Стили для отображения года и навигации */
@@ -137,7 +146,7 @@
 }
 
 .react-calendar__navigation button:hover {
-  color: #31e561;
+  color: #02d33a;
 }
 
 /* Стили для отображения текущего месяца */
@@ -150,18 +159,46 @@
 /* Стиль кнопки "Главная" */
 .button_new {
   padding: 10px;
-  background-color: #45a049; /* Красный цвет для кнопки выхода */
+  background-color: #45a049; /* Зеленый цвет для кнопки */
   border: none;
   color: white;
   font-size: 16px;
   cursor: pointer;
   border-radius: 5px;
-  margin-top: 20px;
+  position: absolute; /* Абсолютное позиционирование кнопки */
+  top: 20px; /* Отступ от верхней границы */
+  left: 50%; /* Центрируем по горизонтали */
+  transform: translateX(-50%); /* Центрируем точно */
+  z-index: 1000; /* Убедимся, что кнопка будет поверх других элементов */
   width: 200px;
-
-  margin-left: 45%;
+  
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Добавим тень для выделения */
+  
 }
 
 button:hover {
   background-color: #318a37;
+}
+
+/* Общий стиль для страницы */
+.calendar-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Календарь будет занимать всю высоту экрана */
+  margin: 0;
+  background-color: #f4f4f4;
+  padding-top: 80px; /* Добавляем отступ сверху, чтобы календарь не перекрывал кнопку */
+}
+
+/* Контейнер для календаря */
+.calendar-container {
+  width: 100%;
+  max-width: 1400px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  overflow: hidden;
+  transform: scale(1.2);
 }
