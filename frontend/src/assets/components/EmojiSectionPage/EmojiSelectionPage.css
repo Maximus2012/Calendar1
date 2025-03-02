@@ -47,6 +47,7 @@ h2, h3 {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .add-category-button:hover {
@@ -72,6 +73,7 @@ h2, h3 {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .add-emoji-button:hover {
@@ -126,6 +128,7 @@ h2, h3 {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .modal-content button:hover {
@@ -180,3 +183,18 @@ h2, h3 {
     transform: scale(1.1);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
+
+  /* Кнопка для очистки даты */
+.clear-date-button {
+    padding: 10px 20px;
+    background-color: #f44336; /* Красный цвет */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.clear-date-button:hover {
+    background-color: #e53935; /* Более темный красный при наведении */
+}

@@ -317,7 +317,7 @@ function EmojiSelectionPage() {
       <button onClick={handleSendEmojis} className="send-emojis-button">
         Отправить эмодзи
       </button>
-      <button onClick={ClearSendEmojis} color="red" className="send-emojis-button">
+      <button onClick={ClearSendEmojis} className="clear-date-button">
         Очистить дату
       </button>
     </div>
