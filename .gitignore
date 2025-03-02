@@ -3,7 +3,8 @@
 
 # Игнорируем виртуальное окружение Python
 venv/
+.env
 
 # Игнорируем зависимости фронтенда
 frontend/node_modules/
-emoji_calendar/media
+emoji_calendar/media/

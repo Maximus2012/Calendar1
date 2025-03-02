@@ -21,13 +21,13 @@ function RegisterPage() {
     }
 
     try {
-      const response = await axios.post("http://127.0.0.1:8000/auth/users/", {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/users/`, {
         username,
         email,
         password,
       });
 
-      console.log(response.data); // Для отладки
+
 
       // Перенаправление на страницу логина после успешной регистрации
       navigate("/login");
