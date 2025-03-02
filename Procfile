@@ -1,0 +1,1 @@
+web: gunicorn emoji_calendar.wsgi --log-file -
