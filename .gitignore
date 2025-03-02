@@ -8,3 +8,4 @@ venv/
 # Игнорируем зависимости фронтенда
 frontend/node_modules/
 emoji_calendar/media/
+__pycache__
