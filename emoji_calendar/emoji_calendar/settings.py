@@ -37,6 +37,7 @@ ALLOWED_HOSTS = [
     "https://dfe7-35-156-78-237.ngrok-free.app",
     "localhost",
     "127.0.0.1",
+    "web-production-bb39.up.railway.app",
 ]
 
 
